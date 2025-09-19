@@ -15,9 +15,9 @@ public class DBCommunicator {
     
     public static Rider riderArrived(int startnummer) throws SQLException {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement ps2 = conn.prepareStatement("SELECT strecke, vname, nname, ort, status FROM " + table + " WHERE snr = ?");
-            ps2.setInt(1, startnummer);
-            ResultSet rs = ps2.executeQuery();
+            PreparedStatement ps1 = conn.prepareStatement("SELECT strecke, vname, nname, ort, status FROM " + table + " WHERE snr = ?");
+            ps1.setInt(1, startnummer);
+            ResultSet rs = ps1.executeQuery();
             if (!rs.next()) return null;
             if (rs.getTimestamp("status") != null) return null;
             
