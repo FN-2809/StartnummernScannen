@@ -97,4 +97,19 @@ public class DBCommunicator {
     public static void setPassword(String password) {
         DBCommunicator.password = password;
     }
+    
+    public static void logRiderWithTimestamp(int startnummer, Timestamp timestamp) throws SQLException {
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement ps1 = conn.prepareStatement("SELECT strecke, vname, nname, ort, status FROM " + table + " WHERE snr = ?");
+            ps1.setInt(1, startnummer);
+            ResultSet rs = ps1.executeQuery();
+            if (!rs.next()) return;
+            if (rs.getTimestamp("status") != null) return;
+            
+            PreparedStatement ps2 = conn.prepareStatement("UPDATE " + table + " SET status = ? WHERE snr = ?");
+            ps2.setTimestamp(1, timestamp);
+            ps2.setInt(2, startnummer);
+            ps2.executeUpdate();
+        }
+    }
 }
