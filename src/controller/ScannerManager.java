@@ -36,13 +36,15 @@ public class ScannerManager {
     }
     
     public void logAllArrivedRiders(){
-        for (Rider rider : DBCommunicator.getAllArrivedRiders(errorParent)){
+        Rider[] arrivedRiders = DBCommunicator.getAllArrivedRiders(errorParent);
+        clearAllRiders();
+        for (Rider rider : arrivedRiders){
             arrivedPanel.addRider(rider);
             scoreboards.addRider(rider);
         }
     }
     
-    public void clearAllRiders() {
+    private void clearAllRiders() {
         arrivedPanel.clearAllRiders();
         scoreboards.clearAllRiders();
     }
