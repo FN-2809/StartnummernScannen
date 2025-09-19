@@ -21,7 +21,7 @@ public class ArrivedPanel extends JPanel {
 
         // Suchfeld oben
         JPanel searchPanel = new JPanel(new BorderLayout());
-        JLabel searchLabel = new JLabel("Suche (Startnummer oder Nachname): ");
+        JLabel searchLabel = new JLabel("Suche (Startnummer oder Nachname) und gleichzeitig Scanner input(!): ");
         JTextField searchField = new JTextField();
         searchPanel.add(searchLabel, BorderLayout.WEST);
         searchPanel.add(searchField, BorderLayout.CENTER);
