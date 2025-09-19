@@ -7,7 +7,6 @@ import view.detailPanels.ArrivedPanel;
 import view.detailPanels.Scoreboards;
 import view.publicPanels.CurrentArrivalsPanel;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ScannerManager {
@@ -50,12 +49,7 @@ public class ScannerManager {
     
     public void scannedNumber(String number) {
         if (number.charAt(0) != '#') {
-            JOptionPane.showMessageDialog(
-                    errorParent,
-                    "Ungültige Startnummer: " + number,
-                    "Achtung! Startnummer nicht gescannt.",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            LogHelper.writeLog("Ignored scanned input: " + number);
             return;
         }
         try {
@@ -63,12 +57,7 @@ public class ScannerManager {
             logArrivedRider(startnummer);
             System.out.println("Scanned number: " + startnummer);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(
-                    errorParent,
-                    "Ungültige Startnummer: " + number,
-                    "Achtung! Startnummer nicht gescannt.",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            LogHelper.writeLog("Ignored scanned input: " + number);
         }
     }
 }

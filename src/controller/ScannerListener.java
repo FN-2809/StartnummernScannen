@@ -15,6 +15,7 @@ public class ScannerListener extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         JTextField searchField = (JTextField) e.getSource();
+        LogHelper.writeLog(searchField.getText());
         
         if (e.getKeyCode() != KeyEvent.VK_ENTER) return;
         if (searchField.getText().length() < 5) return;
