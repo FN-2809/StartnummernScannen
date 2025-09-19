@@ -21,9 +21,9 @@ public class DBCommunicator {
             if (!rs.next()) return null;
             if (rs.getTimestamp("status") != null) return null;
             
-            PreparedStatement ps = conn.prepareStatement("UPDATE " + table + " SET status = NOW() WHERE snr = ?");
-            ps.setInt(1, startnummer);
-            if (ps.executeUpdate() == 0) return null;
+            PreparedStatement ps2 = conn.prepareStatement("UPDATE " + table + " SET status = NOW() WHERE snr = ?");
+            ps2.setInt(1, startnummer);
+            if (ps2.executeUpdate() == 0) return null;
             
             return new Rider(startnummer,
                     Integer.parseInt(rs.getString("strecke")),
