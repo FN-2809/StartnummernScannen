@@ -13,7 +13,7 @@ public class DBCommunicator {
     private static volatile String user = "root";
     private static volatile String password = "REMOVED";
     
-    public static Rider riderArrived(int startnummer, Component errorParent) {
+    public static Rider riderArrived(int startnummer) throws SQLException {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             PreparedStatement ps2 = conn.prepareStatement("SELECT strecke, vname, nname, ort, status FROM " + table + " WHERE snr = ?");
             ps2.setInt(1, startnummer);
