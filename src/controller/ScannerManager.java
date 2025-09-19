@@ -32,12 +32,11 @@ public class ScannerManager {
     }
     
     public void logArrivedRider(int startnummer){
-        Rider arrivedRider;
+        Rider arrivedRider = new Rider(startnummer, 0, "", "", "");
         try {
             if ((arrivedRider = DBCommunicator.riderArrived(startnummer)) == null) return;
             arrivedPanel.addRider(arrivedRider);
             scoreboards.addRider(arrivedRider);
-            currentArrivalsPanel.logRider(arrivedRider);
             if (!stableConnection){
                 stableConnection = true;
                 logFailedNumbers();
@@ -45,6 +44,8 @@ public class ScannerManager {
         } catch (SQLException e) {
             stableConnection = false;
             failedNumbers.add(new FailedLog(startnummer, new Timestamp(System.currentTimeMillis())));
+        } finally {
+            currentArrivalsPanel.logRider(arrivedRider);
         }
         
     }
