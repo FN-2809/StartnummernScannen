@@ -24,6 +24,6 @@ public class DBInformationSetter implements ActionListener {
         model.DBCommunicator.setUser(dbUsernameField.getText());
         model.DBCommunicator.setPassword(dbPasswordField.getText());
         
-        scannerManager.logAllArrivedRiders();
+        scannerManager.logFailedNumbers();
     }
 }

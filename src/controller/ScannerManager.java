@@ -50,7 +50,7 @@ public class ScannerManager {
         
     }
     
-    private void logFailedNumbers() {
+    public void logFailedNumbers() {
         LinkedList<FailedLog> stillFailed = new LinkedList<>();
         for (FailedLog failedLog : failedNumbers) {
             try {
