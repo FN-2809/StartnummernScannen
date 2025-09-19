@@ -25,17 +25,20 @@ public class DBCommunicator {
             ps2.setInt(1, startnummer);
             if (ps2.executeUpdate() == 0) return null;
             
-            return new Rider(startnummer,
-                    Integer.parseInt(rs.getString("strecke")),
+            int strecke;
+            try{
+                strecke = Integer.parseInt(rs.getString("strecke"));
+            } catch (NumberFormatException e) {
+                strecke = 0;
+            }
+            
+            return new Rider(
+                    startnummer,
+                    strecke,
                     rs.getString("vname"),
                     rs.getString("nname"),
-                    rs.getString("ort"));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(errorParent, "Fehler bei der Datenbankverbindung:\n" + e.getMessage(), "Datenbankfehler", JOptionPane.ERROR_MESSAGE);
-            return null;
-        } catch (NumberFormatException e) {
-            return new Rider(startnummer, -1, "Fehlerhafte", "Startnummer", "");
+                    rs.getString("ort")
+            );
         }
     }
     
